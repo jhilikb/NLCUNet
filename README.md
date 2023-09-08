@@ -1,4 +1,4 @@
-# h2cgan
+# H2CGAN
 We provide a simple GAN based baseline for image deraining, dehazing tasks. Some result images are uploaded in the image folder. Processing of cityscape images using H2CGAN and other SOA techniques are provided
 
 
@@ -7,17 +7,17 @@ We provide a simple GAN based baseline for image deraining, dehazing tasks. Some
 
 
 
-Visualizing feature activations 
+# Visualizing feature activations using the visualize notebook
 
-# Euclidean distance--->sample data in test folder
+To check feature distance in euclidean space among clean, hazy and dehazed images, save the .pt files in the "test" folder. Each image features are saved as a separate .pt file. Features can be extracted from Encoder of H2CGAN. Closer the distance between clean and hazy, better the encoder has learned the image features. Closer the distance between clean and dehazed, better the decoder has learnt to generate clean images from the hazy features.
 
-1.To calculate Euclidean distance add the path of the .pt files.
-2. It will give distance values in .txt file.
-3. Pass the .txt file in graph code to plot a Euclidean graph.
+a. To calculate Euclidean distance add the path of the .pt files (test folder)
+b. It will generate distance values in .txt file as shown in the samples
+c. Pass the .txt file in graph code to plot the graph.
 
 
-#To plot the Activation sum plot RIS-original, RIS-DID and RIS-DRRID ---> sample data in test1 folder
+To plot the feature activation sum plot RIS-original, RIS-DID and RIS-DRRID ,sample data is in test1 folder. Populate the folders with .pt files for each image. Features can be extracted from object detector.
 
-1. Add the path of .pt files for all the three datasets.
-2. Generate .csv files denotive sum of all the values>0.5 and values<0.5.
-3. pass these .csv to generate the graph.
+a. Add the path of .pt files for all the three datasets.
+b. Generate .csv files denotive sum of all the values>0.5 and values<0.5.
+c. pass these .csv to generate the graph.
