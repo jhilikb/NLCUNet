@@ -1,6 +1,20 @@
 # H2CGAN
 We provide a simple GAN based baseline for image deraining, dehazing tasks. Some result images are uploaded in the image folder. Processing of cityscape images using H2CGAN and other SOA techniques are provided
 
+A network trained with Cityscapes Images have been uploaded at https://drive.google.com/drive/folders/1CVAAVqmfXwqlTfQyALyVCwezwl19hjHc?usp=sharing 
+
+The files should be downloaded in the parent git folder under checkpoints/dhcs4
+
+To test cityscape images (https://www.cityscapes-dataset.com/file-handling/?packageID=31) from (https://www.cityscapes-dataset.com/downloads/) you need to download the images in the dataset/test1 folder.
+
+To run the code:
+
+mkdir dataset/test0
+
+python3 test.py
+
+Results will be saved in the results folder. Sample images are provided for testing. The code is tested in Python 3.8, torch 1.7.1, torchvision 0.8.2.
+
 
 
 
