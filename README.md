@@ -25,3 +25,8 @@ a. Add the path of .pt files for all the three datasets.
 b. Generate .csv files denotive sum of all the values>0.5 and values<0.5.
 
 c. pass these .csv to generate the graph.
+
+
+#Cite
+
+The paper "H2CGAN: Manageble AI for scene understanding tasks in hazy/rainy environment" is submitted to TIP IEEE. Authors are Pragya Mishra, Jhilik Bhattacharya, RK Sharma and Giovanni Ramponi.  
