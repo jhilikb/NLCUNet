@@ -43,4 +43,6 @@ c. pass these .csv to generate the graph.
 
 # Cite
 
-The paper "H2CGAN: Manageble AI for scene understanding tasks in hazy/rainy environment" is submitted to TIP IEEE. Authors are Pragya Mishra, Jhilik Bhattacharya, RK Sharma and Giovanni Ramponi 
+-The paper "H2CGAN: Manageble AI for scene understanding tasks in hazy/rainy environment" is submitted to TIP IEEE. Authors are Pragya Mishra, Jhilik Bhattacharya, RK Sharma and Giovanni Ramponi 
+
+-The code has been adapted from general cycleGANs and plexer architecture.
