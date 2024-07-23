@@ -15,7 +15,7 @@ class TestOptions():
     def initialize(self):
 
         
-        self.parser.add_argument('--name', default='dhcs4', type=str,
+        self.parser.add_argument('--name', default='n2d', type=str,
                                  help='name of the experiment. It decides where to store samples and models')
         self.parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
 
@@ -39,7 +39,7 @@ class TestOptions():
 
         self.parser.add_argument('--ngf', type=int, default=64, help='# of gen filters in first conv layer')
         
-        self.parser.add_argument('--netG_n_blocks', type=int, default=9,
+        self.parser.add_argument('--netG_n_blocks', type=int, default=4,
                                  help='number of residual blocks to use for netG')  # 4 for small networks
         self.parser.add_argument('--netG_n_shared', type=int, default=0,
                                  help='number of blocks to use for netG shared center module')
