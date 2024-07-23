@@ -93,43 +93,7 @@ def GANLoss(inputs_real, inputs_fake, is_discr):
     losses = [m*l for m,l in zip(multipliers, losses)]
     return sum(losses) / (sum(multipliers) * len(losses))
 
-
-# Defines the generator that consists of Resnet blocks between a few
-# downsampling/upsampling operations.
-# Code and idea originally from Justin Johnson's architecture.
-# https://github.com/jcjohnson/fast-neural-style/
-# @cuda.jit
-# def sgfun(input,incos,insin,out):
-#     k=1
-#     ich=input.shape[1]
-#     ch=64
-#     f = nn.Flatten()
-#     l=nn.Linear(((k*2 + 1)**2)*18,ch)
-#     i, j = cuda.grid(2)
-#     if i>=k and i< (input.shape[2]-k) and j>=k and j< (input.shape[3]-k):
-        
-        
-       
-#         t=input[:,:,i-k:i+k+1,j-k:j+k+1]
-#         #print(t.shape)
-#         t=torch.reshape(t,(1,ich,(k*2 + 1)**2,1))
-#         tc=incos[:,:,i-k:i+k+1,j-k:j+k+1]
-#         tc=torch.reshape(tc,(1,ich,(k*2 + 1)**2,1))
-#         ts=insin[:,:,i-k:i+k+1,j-k:j+k+1]
-#         ts=torch.reshape(ts,(1,ich,(k*2 + 1)**2,1))
-#         tca=torch.cross(t,t)
-#         tcb=torch.cross(t,tc)
-#         tcc=torch.cross(t,ts)
-#         tcd=torch.cross(tc,tc)
-#         tce=torch.cross(tc,ts)
-#         tcf=torch.cross(ts,ts)
-#         tccat=torch.cat((tca,tcb,tcc,tcd,tce,tcf),1)
-#         tccatf=f(tccat)
-#         lout=l(tccatf)
-#         #print(lout.shape)
-
-#         out[0,0:ch,i-k,j-k]=lout
-        
+     
 
 
 class sclayer(nn.Module):
@@ -153,63 +117,13 @@ class sclayer(nn.Module):
                 temp=temp.unsqueeze(1)
                 output=torch.cat((output,temp),1)
         return output
-class sg(nn.Module):
-    
-    def __init__(self,ic,oc,k,gpu_ids=[]):
-        
-        super(sg, self).__init__()
-        self.gpu_ids = gpu_ids
-        # m=[]
-        # m+=[nn.Conv2d(c,c/2,kernel_size=1,padding=0,bias=False),norm_layer(c/2)]
-        # self.m=nn.Sequential(*m)
-        #self.m=SequentialContext(2, *m)
-
-        self.ch=oc
-        self.ich=ic
-        self.f = nn.Flatten()
-        self.l=nn.Linear(((k*2 + 1)**2)*18,oc)
-        self.k=k
-        
-        
-    
-    def forward(self, input):
-        #i, j = cuda.grid(2)
-        out=torch.empty((1,self.ch,input.shape[2]-self.k*2,input.shape[3]-self.k*2),device=torch.device('cuda:0'))
-        incos=torch.cos(input)
-        insin=torch.sin(input)
-        
-        
-        
-        for i in range(self.k,input.shape[2]-self.k):
-            for j in range(self.k,input.shape[3]-self.k):
-                t=input[:,:,i-self.k:i+self.k+1,j-self.k:j+self.k+1]
-                #print(t.shape)
-                t=torch.reshape(t,(1,self.ich,(self.k*2 + 1)**2,1))
-                tc=incos[:,:,i-self.k:i+self.k+1,j-self.k:j+self.k+1]
-                tc=torch.reshape(tc,(1,self.ich,(self.k*2 + 1)**2,1))
-                ts=insin[:,:,i-self.k:i+self.k+1,j-self.k:j+self.k+1]
-                ts=torch.reshape(ts,(1,self.ich,(self.k*2 + 1)**2,1))
-                tca=torch.cross(t,t)
-                tcb=torch.cross(t,tc)
-                tcc=torch.cross(t,ts)
-                tcd=torch.cross(tc,tc) 
-                tce=torch.cross(tc,ts)
-                tcf=torch.cross(ts,ts)
-                tccat=torch.cat((tca,tcb,tcc,tcd,tce,tcf),1)
-                tccatf=self.f(tccat)
-                lout=self.l(tccatf)
-                #print(lout.shape)
-                
-                out[0,0:self.ch,i-self.k,j-self.k]=lout
-        return out
-
 
         
+        
+          
     
 class ResnetGenEncoder(nn.Module):
-    #**************************************************************************************changes***************************************************
-#1 7*7 kernel(ngf=64), downsampling=2(128,256) 3*3 with stride+padding..4(n_blocks) resnet blocks(2 conv)..ori
-#1 7*7 kernel(64), 1(128) 3*3 with stride+padding..2 resnet blocks(2 conv)..now
+  
     def __init__(self, input_nc, n_blocks=2, ngf=64, norm_layer=nn.BatchNorm2d,
                  use_dropout=False, gpu_ids=[], use_bias=False, padding_type='reflect'):
         assert(n_blocks >= 0)
@@ -242,14 +156,7 @@ class ResnetGenEncoder(nn.Module):
         self.model = nn.Sequential(*model)
 
     def forward(self, input):
-        # incos=torch.cos(input)
-        # insin=torch.sin(input)
-        # print(incos.shape)
-        # input1=torch.cat((input,incos,insin),1)
-
-        #input1=torch.cat((input[:,0,:,:],input[:,1,:,:],input[:,2,:,:],torch.cos(input[:,0,:,:]),torch.cos(input[:,1,:,:]),torch.cos(input[:,2,:,:]),torch.sin(input[:,0,:,:]),torch.sin(input[:,1,:,:]),torch.sin(input[:,2,:,:])),1)
         
-
         if self.gpu_ids and isinstance(input.data, torch.cuda.FloatTensor):
             return nn.parallel.data_parallel(self.model, input, self.gpu_ids)
         return self.model(input)
