@@ -1,11 +1,11 @@
-# NLCSine
+# NLCUNET
 We provide a simple GAN based baseline with nonlinear block
 
-A network trained with Robocar Images have been uploaded at https://drive.google.com/drive/folders/1CVAAVqmfXwqlTfQyALyVCwezwl19hjHc?usp=sharing 
+A network trained with Cityscapes Images have been uploaded at https://drive.google.com/drive/folders/1CVAAVqmfXwqlTfQyALyVCwezwl19hjHc?usp=sharing 
 
 The files should be downloaded in the parent git folder under checkpoints/n2d
 
-To test robocar images (https://www.cityscapes-dataset.com/file-handling/?packageID=31) from (https://www.cityscapes-dataset.com/downloads/) you need to download the images in the dataset/test1 folder.
+To test Cityscapes images (https://www.cityscapes-dataset.com/file-handling/?packageID=31) from (https://www.cityscapes-dataset.com/downloads/) you need to download the images in the dataset/test1 folder.
 
 To run the code:
 
