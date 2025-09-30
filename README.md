@@ -23,6 +23,6 @@ Results will be saved in the results folder. Sample images are provided for test
 # Cite
 
 Please cite the paper as: 
-J. Bhattacharya, A. Carini, S. Marsi and G. Ramponi, "A Nonlinear Convolution Network for Image Enhancement and Translation Tasks"
+J. Bhattacharya, A. Carini, S. Marsi and G. Ramponi, "A Polynomial and Fourier Basis Network for Vision-based Translation Tasks"
 
 -The code has been adapted from general cycleGANs and plexer architecture.
