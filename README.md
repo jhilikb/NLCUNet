@@ -19,15 +19,19 @@ The pretrained models can be found here:
 | Night2Day    | Robocar   | [n2dv2c ](https://drive.google.com/drive/folders/1CVAAVqmfXwqlTfQyALyVCwezwl19hjHc?usp=sharing)  |
 |Low2Bright    | Adobe   | [l2bv2c](https://drive.google.com/drive/folders/1CVAAVqmfXwqlTfQyALyVCwezwl19hjHc?usp=sharing)   | https://drive.google.com/drive/folders/1CVAAVqmfXwqlTfQyALyVCwezwl19hjHc?usp=sharing 
 
-The files should be downloaded in the parent git folder under checkpoints/
+The model folders should be downloaded in the parent git folder under checkpoints/
 
 
 To run the code:
 
 mkdir dataset/test0
 
+Put the testset under the dataset folder. 
+
 Test your code using the task name and the model name. For example if you want to use the pretrained model trained with SUN dataset for dehazing use:
-python3 test.sh --task dehazing --model sun
+python3 test.sh --task dehazing --model sun --testset "name_of_your_test_folder"
+
+Please note due to the chain of the code, it is mandatory to save your test_folder in the datasets folder and create an empty test0 there.
 
 The different task names are dehazing,deraining,low2bright and night2day.
 
