@@ -1,5 +1,8 @@
-Sample images for low to bright enhancements
+Sample images for low to bright enhancements cropc_y_3.png: y stands for the following
 c:cidnet
 m:maxim
 d:diffuir
 r:retinexformer
+gt:groundtruth
+ll:lowlight
+n:NLCNet
