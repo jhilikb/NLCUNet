@@ -1,1 +1,5 @@
 Sample images for low to bright enhancements
+c:cidnet
+m:maxim
+d:diffuir
+r:retinexformer
